@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Hour Order</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HOME
+  ========================== -->
+  <main class="app page active" id="homePage">
+
+    <section class="hero">
+
+      <div class="hero-top">
+        <span class="happy-label">HAPPY HOUR</span>
+        <span class="status">ACTIVE</span>
+      </div>
+
+      <p class="time">4:00 PM — 6:00 PM</p>
+
+      <h1>
+        Happy<br>
+        Hour
+      </h1>
+
+      <p class="tagline">
+        Your afternoon treat just got better.
+      </p>
+
+    </section>
+
+
+    <section class="promo-card">
+
+      <div class="promo-badge">
+        FOOD HAPPY HOUR
+      </div>
+
+      <div class="promo-content">
+
+        <span class="discount">30%</span>
+
+        <div class="discount-info">
+          <span class="off">OFF</span>
+          <strong>ALL FOOD</strong>
+        </div>
+
+      </div>
+
+      <p class="promo-description">
+        Enjoy 30% off selected food during Happy Hour.
+      </p>
+
+    </section>
+
+
+    <button class="start-order" id="startOrder">
+      <span>Start New Order</span>
+      <span class="arrow">→</span>
+    </button>
+
+    <p class="helper-text">
+      Tap to start taking a new food order.
+    </p>
+
+    <button class="manage-menu" id="manageMenu">
+      Manage Menu
+    </button>
+
+    <!-- =========================
+     RECENT ORDERS
+========================== -->
+
+<section class="recent-orders-section">
+
+  <div class="recent-orders-header">
+
+    <div>
+      <span class="recent-label">
+        ORDER ACTIVITY
+      </span>
+
+      <h2>Recent Orders</h2>
+    </div>
+
+   <button
+  class="view-all-orders"
+  id="viewAllOrders">
+  View All →
+</button>
+
+  </div>
+
+
+  <div
+    class="recent-orders-list"
+    id="recentOrdersList">
+  </div>
+
+
+  <div
+    class="no-orders"
+    id="noOrders">
+
+    <span>☕</span>
+
+    <strong>No orders yet</strong>
+
+    <p>
+      Confirmed orders will appear here.
+    </p>
+
+  </div>
+
+</section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOD MENU
+  ========================== -->
+  <main class="app menu-page page" id="menuPage">
+
+    <header class="menu-header">
+
+      <button class="back-button" id="backHome">
+        ←
+      </button>
+
+      <div>
+        <span class="menu-label">
+          HAPPY HOUR
+        </span>
+
+        <h2>Food Menu</h2>
+      </div>
+
+      <span class="menu-discount">
+        30% OFF
+      </span>
+
+    </header>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search food..."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <!-- CATEGORY FILTER -->
+
+    <div class="category-scroll" id="categoryFilters">
+
+      <button
+        class="category-chip active"
+        data-category="all">
+        All
+      </button>
+
+      <button
+        class="category-chip"
+        data-category="hot-meal">
+        Hot Meal
+      </button>
+
+      <button
+        class="category-chip"
+        data-category="sandwich">
+        Sandwich
+      </button>
+
+      <button
+        class="category-chip"
+        data-category="savories">
+        Savories
+      </button>
+
+      <button
+        class="category-chip"
+        data-category="baked">
+        Baked
+      </button>
+
+      <button
+        class="category-chip"
+        data-category="dessert">
+        Dessert
+      </button>
+
+      <button
+        class="category-chip"
+        data-category="grab-go">
+        Grab & Go
+      </button>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <section
+      class="product-grid"
+      id="productGrid">
+    </section>
+
+
+    <!-- EMPTY SEARCH -->
+
+    <div
+      class="empty-state"
+      id="emptyState">
+
+      <span>☕</span>
+
+      <strong>
+        No food found
+      </strong>
+
+      <p>
+        Try another search or category.
+      </p>
+
+    </div>
+
+<!-- CART BAR -->
+
+<div class="cart-bar" id="cartBar">
+
+  <div class="cart-bar-info">
+
+    <span id="cartItemCount">
+      0 items
+    </span>
+
+    <strong id="cartBarTotal">
+      Rp0
+    </strong>
+
+  </div>
+
+  <button id="viewCart">
+    View Order
+    <span>→</span>
+  </button>
+
+</div>
+
+  </main>
+
+<!-- =========================
+     MANAGE MENU
+========================== -->
+
+<main class="app manage-page page" id="managePage">
+
+  <header class="manage-header">
+
+    <button class="back-button" id="backManage">
+      ←
+    </button>
+
+    <div>
+      <span class="menu-label">SETTINGS</span>
+      <h2>Manage Menu</h2>
+    </div>
+
+  </header>
+
+
+  <p class="manage-description">
+    Update prices and food availability.
+  </p>
+
+
+  <div class="manage-list" id="manageList">
+  </div>
+
+  </main>
+
+<!-- =========================
+     CART / ORDER REVIEW
+========================== -->
+
+<main class="app cart-page page" id="cartPage">
+
+  <header class="cart-header">
+
+    <button
+      class="back-button"
+      id="backToMenu">
+      ←
+    </button>
+
+    <div>
+
+      <span class="menu-label">
+        HAPPY HOUR
+      </span>
+
+      <h2>Your Order</h2>
+
+    </div>
+
+  </header>
+
+
+  <p class="cart-description">
+    Review the food order before confirming.
+  </p>
+
+
+  <!-- CART ITEMS -->
+
+  <section
+    class="cart-items"
+    id="cartItems">
+  </section>
+
+
+  <!-- SUMMARY -->
+
+  <section
+    class="order-summary"
+    id="orderSummary">
+
+    <div class="summary-row">
+
+      <span>Original Total</span>
+
+      <span id="originalTotal">
+        Rp0
+      </span>
+
+    </div>
+
+
+    <div class="summary-row saving">
+
+      <span>Happy Hour Savings</span>
+
+      <span id="totalSavings">
+        -Rp0
+      </span>
+
+    </div>
+
+
+    <div class="summary-divider"></div>
+
+
+    <div class="summary-row total">
+
+      <span>Total</span>
+
+      <strong id="finalTotal">
+        Rp0
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <button
+    class="confirm-order"
+    id="confirmOrder">
+
+    Confirm Order
+
+    <span>→</span>
+
+  </button>
+
+</main>
+
+<!-- =========================
+     ORDER SUCCESS
+========================== -->
+
+<main class="app success-page page" id="successPage">
+
+  <section class="success-hero">
+
+    <div class="success-icon">✓</div>
+
+    <span class="success-label">
+      ORDER CONFIRMED
+    </span>
+
+    <h2>Order Ready</h2>
+
+    <p>
+      Transfer this order to the POS.
+    </p>
+
+  </section>
+
+
+  <section class="success-order-card">
+
+    <div class="success-order-header">
+
+      <div>
+        <span>ORDER ID</span>
+        <strong id="successOrderId">
+          HH-000
+        </strong>
+      </div>
+
+      <div class="success-time" id="successOrderTime">
+        00:00
+      </div>
+
+    </div>
+
+
+    <div
+      class="success-items"
+      id="successItems">
+    </div>
+
+
+    <div class="success-divider"></div>
+
+
+    <div class="success-total-row">
+
+      <span>Total</span>
+
+      <strong id="successTotal">
+        Rp0
+      </strong>
+
+    </div>
+
+
+    <div class="success-saving-row">
+
+      <span>Happy Hour Savings</span>
+
+      <strong id="successSavings">
+        Rp0
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <!-- STATUS -->
+
+  <section class="pos-status-card">
+
+    <span class="pos-status-label">
+      POS STATUS
+    </span>
+
+    <div class="pos-status" id="posStatus">
+
+      <span class="status-dot"></span>
+
+      <strong id="posStatusText">
+        Waiting for POS
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <button
+    class="transfer-pos-button"
+    id="transferPosButton">
+
+    <span>Mark as Transferred to POS</span>
+    <span>✓</span>
+
+  </button>
+
+
+  <button
+    class="new-order-button"
+    id="newOrderButton">
+
+    Start New Order
+
+  </button>
+
+</main>
+
+<!-- =========================
+     ORDER DETAIL / HISTORY
+========================== -->
+
+<main class="app history-detail-page page" id="historyDetailPage">
+
+  <header class="history-detail-header">
+
+    <button
+      class="back-button"
+      id="backFromHistory">
+      ←
+    </button>
+
+    <div>
+
+      <span class="menu-label">
+        ORDER HISTORY
+      </span>
+
+      <h2>Order Detail</h2>
+
+    </div>
+
+  </header>
+
+
+  <section class="history-order-card">
+
+    <div class="history-order-top">
+
+      <div>
+
+        <span>ORDER ID</span>
+
+        <strong id="historyOrderId">
+          HH-0000-000
+        </strong>
+
+      </div>
+
+
+      <span
+        class="history-status"
+        id="historyStatus">
+
+        Waiting for POS
+
+      </span>
+
+    </div>
+
+
+    <div class="history-meta">
+
+      <span id="historyDate">
+        —
+      </span>
+
+      <span>•</span>
+
+      <span id="historyItemCount">
+        0 items
+      </span>
+
+    </div>
+
+
+    <div
+      class="history-items"
+      id="historyItems">
+    </div>
+
+
+    <div class="history-divider"></div>
+
+
+    <div class="history-summary-row">
+
+      <span>Original Total</span>
+
+      <span id="historyOriginalTotal">
+        Rp0
+      </span>
+
+    </div>
+
+
+    <div class="history-summary-row saving">
+
+      <span>Happy Hour Savings</span>
+
+      <span id="historySavings">
+        -Rp0
+      </span>
+
+    </div>
+
+
+    <div class="history-divider"></div>
+
+
+    <div class="history-summary-row total">
+
+      <strong>Total</strong>
+
+      <strong id="historyTotal">
+        Rp0
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <button
+    class="history-transfer-button"
+    id="historyTransferButton">
+
+    <span>Mark as Transferred to POS</span>
+
+    <span>✓</span>
+
+  </button>
+
+  <button
+  class="delete-order-button"
+  id="deleteOrderButton">
+
+  Delete Order
+
+</button>
+
+</main>
+
+<!-- =========================
+     ALL ORDER HISTORY
+========================== -->
+
+<main class="app orders-page page" id="ordersPage">
+
+  <header class="orders-header">
+
+    <button
+      class="back-button"
+      id="backFromOrders">
+      ←
+    </button>
+
+    <div>
+      <span class="menu-label">
+        HAPPY HOUR
+      </span>
+
+      <h2>Order History</h2>
+    </div>
+
+  </header>
+
+
+  <!-- STATS -->
+
+  <section class="order-stats">
+
+    <div>
+      <span>WAITING</span>
+      <strong id="waitingCount">0</strong>
+    </div>
+
+    <div>
+      <span>TRANSFERRED</span>
+      <strong id="transferredCount">0</strong>
+    </div>
+
+    <div>
+      <span>TOTAL</span>
+      <strong id="allOrderCount">0</strong>
+    </div>
+
+  </section>
+
+
+  <!-- SEARCH -->
+
+  <div class="order-search">
+
+    <span>⌕</span>
+
+    <input
+      type="text"
+      id="orderSearchInput"
+      placeholder="Search Order ID..."
+      autocomplete="off"
+    >
+
+  </div>
+
+
+  <!-- FILTER -->
+
+  <div class="order-filter">
+
+    <button
+      class="order-filter-button active"
+      data-order-filter="all">
+      All
+    </button>
+
+    <button
+      class="order-filter-button"
+      data-order-filter="waiting-pos">
+      Waiting for POS
+    </button>
+
+    <button
+      class="order-filter-button"
+      data-order-filter="transferred">
+      Transferred
+    </button>
+
+  </div>
+
+
+  <!-- LIST -->
+
+  <section
+    class="all-orders-list"
+    id="allOrdersList">
+  </section>
+
+
+  <!-- EMPTY -->
+
+  <div
+    class="orders-empty"
+    id="ordersEmpty">
+
+    <span>☕</span>
+
+    <strong>No orders found</strong>
+
+    <p>
+      Try another filter or search.
+    </p>
+
+  </div>
+
+</main>
+
+<!-- =========================
+     EDIT PRICE MODAL
+========================== -->
+
+<div class="modal-overlay" id="priceModal">
+
+  <div class="price-modal">
+
+    <div class="modal-handle"></div>
+
+    <span class="modal-label">
+      EDIT PRICE
+    </span>
+
+    <h3 id="editProductName">
+      Product Name
+    </h3>
+
+
+    <label class="price-input-label">
+      Normal Price
+    </label>
+
+    <div class="price-input-wrapper">
+
+      <span>Rp</span>
+
+      <input
+        type="number"
+        id="priceInput"
+        placeholder="0"
+        inputmode="numeric"
+      >
+
+    </div>
+
+
+    <div class="price-preview">
+
+      <span>Happy Hour Price</span>
+
+      <strong id="discountPreview">
+        Rp0
+      </strong>
+
+      <small>
+        30% discount automatically applied
+      </small>
+
+    </div>
+
+
+    <div class="modal-actions">
+
+      <button
+        class="modal-cancel"
+        id="cancelPrice">
+        Cancel
+      </button>
+
+      <button
+        class="modal-save"
+        id="savePrice">
+        Save Price
+      </button>
+
+    </div>
+
+
+    <button
+      class="reset-price"
+      id="resetPrice">
+      Reset to Default Price
+    </button>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PRODUCT DETAIL
+========================== -->
+
+<div class="product-detail-overlay" id="productDetail">
+
+  <div class="product-detail-sheet">
+
+    <button
+      class="close-product-detail"
+      id="closeProductDetail">
+      ×
+    </button>
+
+
+    <!-- IMAGE -->
+
+    <div class="detail-image">
+
+      <img
+        id="detailImage"
+        src=""
+        alt=""
+      >
+
+      <div
+        class="detail-image-fallback"
+        id="detailImageFallback">
+        ☕
+      </div>
+
+      <span class="detail-discount">
+        30% OFF
+      </span>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="detail-content">
+
+      <span
+        class="detail-category"
+        id="detailCategory">
+        HOT MEAL
+      </span>
+
+
+      <h2 id="detailName">
+        Product Name
+      </h2>
+
+
+      <p
+        class="detail-description"
+        id="detailDescription">
+      </p>
+
+
+      <div
+        class="detail-bread"
+        id="detailBread">
+      </div>
+
+
+      <!-- PRICE -->
+
+      <div class="detail-price">
+
+        <span
+          class="detail-original-price"
+          id="detailOriginalPrice">
+        </span>
+
+        <div>
+
+          <strong id="detailHappyPrice">
+            Rp0
+          </strong>
+
+          <span>
+            HAPPY HOUR
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- QUANTITY -->
+
+      <div class="detail-quantity">
+
+        <span>Quantity</span>
+
+        <div class="detail-quantity-control">
+
+          <button id="detailMinus">
+            −
+          </button>
+
+          <strong id="detailQuantity">
+            1
+          </strong>
+
+          <button id="detailPlus">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ADD -->
+
+      <button
+        class="detail-add-button"
+        id="detailAddButton">
+
+        <span id="detailAddText">
+          Add 1 to Order
+        </span>
+
+        <strong id="detailAddTotal">
+          Rp0
+        </strong>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script src="js/manage.js"></script>
+
+</body>
+</html>
