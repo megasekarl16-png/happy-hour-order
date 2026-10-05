@@ -33,9 +33,10 @@ function addToCart(productId) {
   } else {
 
     cart.push({
-      productId: product.id,
-      quantity: 1
-    });
+  productId: product.id,
+  quantity: 1,
+  note: ""
+});
 
   }
 
@@ -107,6 +108,21 @@ function removeFromCart(productId) {
 
 }
 
+// ==========================================
+// ITEM NOTE
+// ==========================================
+
+function updateCartItemNote(productId, note) {
+
+  const item =
+    cart.find(
+      item => item.productId === productId
+    );
+
+  if (!item) return;
+
+  item.note = note;
+}
 
 // ==========================================
 // CLEAR

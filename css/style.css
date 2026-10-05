@@ -2968,3 +2968,217 @@ body {
   }
 
 }
+
+/* ==========================================
+   CART ITEM NOTES
+========================================== */
+
+.cart-item {
+  flex-wrap: wrap;
+}
+
+.cart-note {
+  width: 100%;
+  flex-basis: 100%;
+
+  margin-top: 14px;
+  padding-top: 12px;
+
+  border-top: 1px solid #ebe5dc;
+}
+
+.cart-note label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #718078;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.cart-note textarea {
+  display: block;
+
+  width: 100%;
+  min-height: 58px;
+
+  padding: 11px 12px;
+
+  resize: vertical;
+
+  border: 1px solid #d8d2c8;
+  border-radius: 11px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: #143b2c;
+
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.cart-note textarea::placeholder {
+  color: #89948f;
+}
+
+.cart-note textarea:focus {
+  border-color: #006241;
+  background: #ffffff;
+}
+
+
+/* ==========================================
+   MANAGE — ADD FOOD
+========================================== */
+
+.manage-intro {
+  margin-top: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+}
+
+.manage-intro .manage-description {
+  margin-top: 0;
+}
+
+.add-food-button {
+  flex-shrink: 0;
+
+  padding: 10px 14px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #006241;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   ADD FOOD MODAL
+========================================== */
+
+.add-food-modal {
+  width: 100%;
+  max-width: 430px;
+  max-height: 90vh;
+
+  padding: 12px 24px 30px;
+
+  overflow-y: auto;
+
+  border-radius: 25px 25px 0 0;
+
+  background: #f7f3ec;
+
+  animation: modalUp .25s ease;
+}
+
+.add-food-modal h3 {
+  margin-top: 6px;
+
+  color: #143b2c;
+
+  font-family: Georgia, serif;
+  font-size: 22px;
+}
+
+.add-food-label {
+  display: block;
+
+  margin-top: 18px;
+  margin-bottom: 7px;
+
+  color: #5e7067;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.add-food-label small {
+  color: #89948f;
+
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.add-food-input,
+.add-food-textarea {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid #d5d0c7;
+  border-radius: 12px;
+  outline: none;
+
+  background: #ffffff;
+
+  color: #143b2c;
+
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.add-food-textarea {
+  min-height: 80px;
+
+  resize: vertical;
+
+  line-height: 1.45;
+}
+
+.add-food-input:focus,
+.add-food-textarea:focus {
+  border-color: #006241;
+}
+
+
+@media (min-width: 601px) {
+
+  .add-food-modal {
+    max-width: 620px;
+  }
+
+}
+
+/* ==========================================
+   DELETE CUSTOM FOOD
+========================================== */
+
+.delete-food-button {
+  padding: 7px 10px;
+
+  border: 1px solid #d7b8ad;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #a34835;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: .5px;
+
+  cursor: pointer;
+}
+
+.delete-food-button:hover {
+  background: #f8ece8;
+}

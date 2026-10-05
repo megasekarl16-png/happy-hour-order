@@ -450,6 +450,92 @@ const DEFAULT_PRODUCTS = [
 
 const STORAGE_KEY = "happyHourProductSettings";
 
+const CUSTOM_PRODUCTS_KEY =
+  "happyHourCustomProducts";
+
+
+function getCustomProducts() {
+
+  const saved =
+    localStorage.getItem(
+      CUSTOM_PRODUCTS_KEY
+    );
+
+  if (!saved) {
+    return [];
+  }
+
+  try {
+
+    return JSON.parse(saved);
+
+  } catch (error) {
+
+    console.error(
+      "Failed to read custom products:",
+      error
+    );
+
+    return [];
+
+  }
+
+}
+
+
+function saveCustomProducts(products) {
+
+  localStorage.setItem(
+    CUSTOM_PRODUCTS_KEY,
+    JSON.stringify(products)
+  );
+
+}
+
+
+function addCustomProduct(product) {
+
+  const products =
+    getCustomProducts();
+
+  products.push(product);
+
+  saveCustomProducts(products);
+}
+
+function deleteCustomProduct(productId) {
+
+  const products =
+    getCustomProducts();
+
+  const updatedProducts =
+    products.filter(
+      product =>
+        product.id !== productId
+    );
+
+  saveCustomProducts(updatedProducts);
+
+
+  // Bersihkan juga setting price / availability
+  // milik product yang dihapus
+
+  const settings =
+    getProductSettings();
+
+  if (settings[productId]) {
+
+    delete settings[productId];
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(settings)
+    );
+
+  }
+
+}
+
 function getProductSettings() {
   const saved = localStorage.getItem(STORAGE_KEY);
 
@@ -479,13 +565,26 @@ function saveProductSettings(settings) {
 
 function getProducts() {
 
-  const settings = getProductSettings();
+  const settings =
+    getProductSettings();
 
-  return DEFAULT_PRODUCTS.map(product => {
+  const customProducts =
+    getCustomProducts();
 
-    const custom = settings[product.id];
+
+  const allProducts = [
+    ...DEFAULT_PRODUCTS,
+    ...customProducts
+  ];
+
+
+  return allProducts.map(product => {
+
+    const custom =
+      settings[product.id];
 
     return {
+
       ...product,
 
       price:
@@ -496,12 +595,15 @@ function getProducts() {
       available:
         custom?.available !== undefined
           ? custom.available
-          : true
+          : product.available !== undefined
+            ? product.available
+            : true
+
     };
 
   });
-}
 
+}
 
 // ==========================================
 // GET SINGLE PRODUCT

@@ -795,53 +795,65 @@ function renderCartPage() {
       "cart-item";
 
 
-    element.innerHTML = `
+element.innerHTML = `
 
-      <div class="cart-item-info">
+  <div class="cart-item-info">
 
-        <div class="cart-item-name">
-          ${item.name}
-        </div>
+    <div class="cart-item-name">
+      ${item.name}
+    </div>
+
+    <div class="cart-item-price">
+
+      <span class="cart-old-price">
+        ${formatRupiah(
+          item.originalPrice
+        )}
+      </span>
+
+      <span class="cart-new-price">
+        ${formatRupiah(
+          item.happyHourPrice
+        )}
+      </span>
+
+    </div>
+
+  </div>
 
 
-        <div class="cart-item-price">
+  <div class="quantity-control">
 
-          <span class="cart-old-price">
-            ${formatRupiah(
-              item.originalPrice
-            )}
-          </span>
+    <button
+      data-minus="${item.productId}">
+      −
+    </button>
 
-          <span class="cart-new-price">
-            ${formatRupiah(
-              item.happyHourPrice
-            )}
-          </span>
+    <span>
+      ${item.quantity}
+    </span>
 
-        </div>
+    <button
+      data-plus="${item.productId}">
+      +
+    </button>
 
-      </div>
+  </div>
 
 
-      <div class="quantity-control">
+  <div class="cart-note">
 
-        <button
-          data-minus="${item.productId}">
-          −
-        </button>
+    <label>Notes</label>
 
-        <span>
-          ${item.quantity}
-        </span>
+    <textarea
+      data-note="${item.productId}"
+      maxlength="120"
+      placeholder="Add note, e.g. warm, cut in half..."
+    >${item.note || ""}</textarea>
 
-        <button
-          data-plus="${item.productId}">
-          +
-        </button>
+  </div>
 
-      </div>
-
-    `;
+`;
 
 
     cartItems.appendChild(element);
@@ -908,6 +920,23 @@ cartItems.addEventListener(
       );
 
     }
+
+  }
+);
+
+cartItems.addEventListener(
+  "input",
+  event => {
+
+    const noteInput =
+      event.target.closest("[data-note]");
+
+    if (!noteInput) return;
+
+    updateCartItemNote(
+      noteInput.dataset.note,
+      noteInput.value
+    );
 
   }
 );
@@ -1049,6 +1078,9 @@ confirmOrder.addEventListener(
         quantity:
           item.quantity,
 
+          note:
+  item.note || "",
+
         originalPrice:
           item.originalPrice,
 
@@ -1174,6 +1206,15 @@ function renderConfirmedOrder(order) {
             item.happyHourPrice
           )}
         </span>
+
+        ${item.note
+  ? `
+    <span class="order-item-note">
+      Note: ${item.note}
+    </span>
+  `
+  : ""
+}
 
       </div>
 
@@ -1674,6 +1715,15 @@ deleteOrderButton.classList.toggle(
           )}
 
         </span>
+
+        ${item.note
+  ? `
+    <span class="order-item-note">
+      Note: ${item.note}
+    </span>
+  `
+  : ""
+}
 
       </div>
 

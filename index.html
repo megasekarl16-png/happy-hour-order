@@ -288,15 +288,166 @@
   </header>
 
 
+  <div class="manage-intro">
+
   <p class="manage-description">
-    Update prices and food availability.
+    Update prices, availability, and menu items.
   </p>
+
+  <button
+    class="add-food-button"
+    id="addFoodButton">
+    + Add Food
+  </button>
+
+</div>
 
 
   <div class="manage-list" id="manageList">
   </div>
 
   </main>
+
+<!-- =========================
+     ADD FOOD MODAL
+========================== -->
+
+<div
+  class="modal-overlay"
+  id="addFoodModal">
+
+  <div class="add-food-modal">
+
+    <div class="modal-handle"></div>
+
+    <span class="modal-label">
+      NEW MENU ITEM
+    </span>
+
+    <h3>Add Food</h3>
+
+
+    <label class="add-food-label">
+      Food Name
+    </label>
+
+    <input
+      class="add-food-input"
+      type="text"
+      id="newFoodName"
+      placeholder="Food name"
+      autocomplete="off"
+    >
+
+
+    <label class="add-food-label">
+      Category
+    </label>
+
+    <select
+      class="add-food-input"
+      id="newFoodCategory">
+
+      <option value="hot-meal">
+        Hot Meal
+      </option>
+
+      <option value="sandwich">
+        Sandwich
+      </option>
+
+      <option value="savories">
+        Savories
+      </option>
+
+      <option value="baked">
+        Baked
+      </option>
+
+      <option value="dessert">
+        Dessert & Cake
+      </option>
+
+      <option value="grab-go">
+        Grab & Go
+      </option>
+
+    </select>
+
+
+    <label class="add-food-label">
+      Normal Price
+    </label>
+
+    <div class="price-input-wrapper">
+
+      <span>Rp</span>
+
+      <input
+        type="number"
+        id="newFoodPrice"
+        placeholder="0"
+        inputmode="numeric"
+      >
+
+    </div>
+
+
+    <label class="add-food-label">
+      Description
+    </label>
+
+    <textarea
+      class="add-food-textarea"
+      id="newFoodDescription"
+      placeholder="Short food description..."
+    ></textarea>
+
+
+    <label class="add-food-label">
+      Bread
+      <small>(optional)</small>
+    </label>
+
+    <input
+      class="add-food-input"
+      type="text"
+      id="newFoodBread"
+      placeholder="e.g. Sourdough"
+    >
+
+
+    <label class="add-food-label">
+      Image Path
+    </label>
+
+    <input
+      class="add-food-input"
+      type="text"
+      id="newFoodImage"
+      placeholder="assets/food/example.png"
+    >
+
+
+    <div class="modal-actions">
+
+      <button
+        class="modal-cancel"
+        id="cancelAddFood">
+        Cancel
+      </button>
+
+      <button
+        class="modal-save"
+        id="saveNewFood">
+        Add Food
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
 <!-- =========================
      CART / ORDER REVIEW
